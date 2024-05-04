@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Marvel DC Name</title>
+    <style>
+        #nameOutput{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <form action="/submit">
+        <h1>Find your Marvel DC name:</h1>
+        <input type="text" placeholder="Enter Your name " id="uname">
+        <button id="generateBtn">Find Name</button>
+    </form>
+    <p id="nameOutput"><%= name %> - <%= randomNumber %></p>
+
+    <script src="marvel-dc-name-generator.js"></script>
+    <script>
+     
+     document.getElementById('generateBtn').addEventListener('click', function() {
+            fetch('/generate')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('nameOutput').innerText = `${data.name} - ${data.randomNumber}`;
+                })
+                .catch(error => console.error('Error:', error));
+                nameOutput.style.opacity= '1';
+        });
+    
+    </script>
+</body>
+</html>
